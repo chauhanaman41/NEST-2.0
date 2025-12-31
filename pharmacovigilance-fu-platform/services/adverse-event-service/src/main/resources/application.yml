@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: adverse-event-service
+  data:
+    mongodb:
+      uri: mongodb://admin:password@localhost:27017/adverse_events_db?authSource=admin
+      # Make sure 'admin:password' matches what we put in docker-compose.yml
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: adverse-event-group
+      auto-offset-reset: earliest
+    topic:
+      name: adverse-events
+
+
+server:
+  port: 8082

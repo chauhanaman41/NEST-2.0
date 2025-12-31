@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:pv_auth}
+    username: ${POSTGRES_USER:pv_user}
+    password: ${POSTGRES_PASSWORD:pv_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+jwt:
+  secret: ${JWT_SECRET:verysecretkeythatshouldbechangedinproduction}
+  expiration: 86400000 # 1 day
+
+server:
+  port: 8081

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      routes:
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:http://localhost:8081}
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            # - AuthenticationFilter # Uncomment when ready
+
+        - id: adverse-event-service
+          uri: ${ADVERSE_EVENT_SERVICE_URL:http://localhost:8082}
+          predicates:
+            - Path=/api/events/**
+          filters:
+            # - AuthenticationFilter # Uncomment when ready
